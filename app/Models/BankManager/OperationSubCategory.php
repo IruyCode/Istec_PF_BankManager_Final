@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class OperationSubCategory extends Model
+{
+    use HasFactory;
+
+    protected $table = 'app_bank_manager_operation_sub_categories';
+
+    protected $fillable = ['operation_category_id', 'name'];
+
+    public function operationCategory()
+    {
+        return $this->belongsTo(OperationCategory::class, 'operation_category_id');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'operation_sub_category_id');
+    }
+
+    // public function fixedExpenses()
+    // {
+    //     return $this->hasMany(FixedExpense::class, 'operation_sub_category_id');
+    // }
+}
