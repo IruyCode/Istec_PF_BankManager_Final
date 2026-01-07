@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUserType;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
     Route::prefix('admin')
         ->name('admin.')
